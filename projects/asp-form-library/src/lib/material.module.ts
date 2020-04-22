@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
-import {MatDialogModule} from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
-import {
-  MatInputModule,
-  MatFormFieldModule,
-  MatAutocompleteModule,
-  MatIconModule,
-  MatCheckboxModule,
-  MatButtonModule,
-  MatDatepickerModule,
-  MatSelectModule,
-  MatProgressSpinnerModule,
-} from '@angular/material';
+
+// Material
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [],

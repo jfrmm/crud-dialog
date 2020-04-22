@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Field } from './entities/field';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import {FieldHelperService} from './services/field-helper.service';
 import { FormGroup } from '@angular/forms';
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InputField } from 'asp-form-library';
 import { LabelField, AutoCompleteFilter } from 'projects/asp-form-library/src/public-api';
 import { of } from 'rxjs';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Validators } from '@angular/forms';
 
 @Component({
