@@ -1,6 +1,6 @@
-import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { FieldOption } from '../models/field-option.model';
+import { FormControl } from "@angular/forms";
+import { Observable } from "rxjs";
+import { FieldOption } from "../models/field-option.model";
 
 export class FieldElement {
   private _formControl: FormControl;

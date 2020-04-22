@@ -1,0 +1,94 @@
+<div mat-dialog-title>
+  <h1 mat-dialog-title>{{title}}</h1>
+</div>
+<div
+  mat-dialog-content
+  *ngIf="form"
+>
+  <form
+    class="form-container"
+    [formGroup]="form"
+  >
+    <div
+      fxLayout="row wrap"
+      fxLayoutGap="24px"
+      fxLayoutAlign="start baseline"
+    >
+      <div
+        *ngFor="let field of fields"
+        [ngSwitch]="field.type"
+      >
+        <!-- INPUT -->
+        <mat-form-field
+          *ngSwitchCase="'input'"
+          [ngStyle]="{'width': field.elements?.size ? field.elements.size +'px' : '200px'}"
+        >
+          <input
+            matInput
+            type="text"
+            [placeholder]="field.elements.placeholder"
+            [formControlName]="field.paramName"
+            autocomplete="off"
+            [required]="field.elements.required ? field.elements.required : false"
+          >
+        </mat-form-field>
+        <!-- LABEL -->
+        <div
+          *ngSwitchCase="'label'"
+          [ngStyle]="{'width': field.elements?.size ? field.elements.size +'px' : null}"
+        >
+          {{ field.elements.placeholder }}
+        </div>
+        <!-- AUTOCOMPLETE -->
+        <mat-form-field
+          *ngSwitchCase="'autocomplete'"
+          [ngStyle]="{'width': field.elements?.size ? field.elements.size +'px' : '200px'}"
+        >
+          <input
+            type="text"
+            matInput
+            [formControl]="field.elements.formControl"
+            [placeholder]="field.elements.placeholder"
+            [matAutocomplete]="auto"
+            [required]="field.elements.required ? field.elements.required : false"
+            focused="false"
+          >
+          <mat-autocomplete
+            autoActiveFirstOption
+            #auto="matAutocomplete"
+            [displayWith]="fieldHelper.displayField"
+          >
+            <mat-option
+              *ngFor="let fieldOption of field.elements.options | async"
+              [value]="fieldOption"
+            >
+              {{ fieldOption.value }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</div>
+<div
+  mat-dialog-actions
+  fxLayoutAlign="end center"
+>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="onClickSave()"
+    [disabled]="!form.valid || !form.dirty"
+  >
+    Save
+  </button>
+  <div fxFlex="1"></div>
+  <button
+    mat-raised-button
+    color="warn"
+    (click)="onClickCancel()"
+    i18n
+  >
+    Cancel
+  </button>
+</div>

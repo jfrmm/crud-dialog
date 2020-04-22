@@ -1,10 +1,10 @@
 /*
- * Public API Surface of asp-form-library
+ * Public API Surface of asp-crud-dialog-library
  */
 
  /* COMPONENTS */
-export * from './lib/asp-form-library.component';
-export * from './lib/asp-form-library.module';
+export * from './lib/crud-dialog.component';
+export * from './lib/crud-dialog.module';
 
 /* ENTITIES */
 export * from './lib/entities/input';
@@ -17,4 +17,4 @@ export * from './lib/models/field-option.model';
 
 /* SERVICES */
 export * from './lib/services/field-helper.service';
-export * from './lib/asp-form-library.service';
+export * from './lib/crud-dialog.service';

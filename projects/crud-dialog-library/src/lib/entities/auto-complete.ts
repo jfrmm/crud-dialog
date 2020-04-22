@@ -1,9 +1,14 @@
-import { FormControl } from '@angular/forms';
-import { Field } from './field';
-import { Observable, of } from 'rxjs';
-import { filter, startWith, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { FieldOption } from '../models/field-option.model';
-import { FieldElement } from './field-element';
+import { FormControl } from "@angular/forms";
+import { Field } from "./field";
+import { Observable, of } from "rxjs";
+import {
+  filter,
+  startWith,
+  distinctUntilChanged,
+  switchMap,
+} from "rxjs/operators";
+import { FieldOption } from "../models/field-option.model";
+import { FieldElement } from "./field-element";
 
 export class AutoCompleteFilter extends Field {
   protected _elements: FieldElement;
@@ -16,14 +21,20 @@ export class AutoCompleteFilter extends Field {
     initialValue: FieldOption = null,
     size?: number,
     validators?: any[],
-    required?: boolean,
+    required?: boolean
   ) {
-    super(paramName, 'autocomplete', options);
+    super(paramName, "autocomplete", options);
 
     const formControl = new FormControl(initialValue, validators);
     this._options = options;
 
-    this._elements = new FieldElement(placeholder, formControl, this.filterOptions(formControl), size, required);
+    this._elements = new FieldElement(
+      placeholder,
+      formControl,
+      this.filterOptions(formControl),
+      size,
+      required
+    );
   }
 
   private filterOptions(formControl: FormControl): Observable<FieldOption[]> {
@@ -32,12 +43,14 @@ export class AutoCompleteFilter extends Field {
        * With startwith the list is displayed as soon as focused
        * without it, it will be empty first time its focused, until user types something
        */
-      startWith(''),
+      startWith(""),
       distinctUntilChanged(),
-      filter(value => typeof value === 'string'),
+      filter((value) => typeof value === "string"),
       switchMap((fieldTerm: string) =>
         of(
-          this._options.filter((option: FieldOption) => option.value.toLowerCase().includes(fieldTerm.toLowerCase()))
+          this._options.filter((option: FieldOption) =>
+            option.value.toLowerCase().includes(fieldTerm.toLowerCase())
+          )
         )
       )
     );
@@ -50,5 +63,4 @@ export class AutoCompleteFilter extends Field {
   public clearAllElements(): void {
     this._elements.clear();
   }
-
 }

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FilterHelperService } from './filter-helper.service';
+import { FieldHelperService } from './field-helper.service';
 
 describe('FilterHelperService', () => {
-  let service: FilterHelperService;
+  let service: FieldHelperService;
   beforeEach(() => TestBed.configureTestingModule({}));
 
   beforeEach(() => {
-    service = TestBed.get(FilterHelperService);
+    service = TestBed.get(FieldHelperService);
   });
 
   it('should be created', () => {

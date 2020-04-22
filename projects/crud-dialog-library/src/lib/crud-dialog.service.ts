@@ -4,7 +4,7 @@ import { FieldOption } from './models/field-option.model';
 @Injectable({
   providedIn: 'root'
 })
-export class AspFormLibraryService {
+export class CrudDialogService {
 
   constructor() { }
 
