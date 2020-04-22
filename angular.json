@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -89,6 +90,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -120,6 +122,42 @@
           }
         }
       }
-    }},
+    },
+    "asp-form-library": {
+      "projectType": "library",
+      "root": "projects/asp-form-library",
+      "sourceRoot": "projects/asp-form-library/src",
+      "prefix": "tm",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/asp-form-library/tsconfig.lib.json",
+            "project": "projects/asp-form-library/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/asp-form-library/src/test.ts",
+            "tsConfig": "projects/asp-form-library/tsconfig.spec.json",
+            "karmaConfig": "projects/asp-form-library/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/asp-form-library/tsconfig.lib.json",
+              "projects/asp-form-library/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
   "defaultProject": "asp-form"
 }

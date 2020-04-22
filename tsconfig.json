@@ -17,7 +17,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "asp-form-library": [
+        "dist/asp-form-library"
+      ],
+      "asp-form-library/*": [
+        "dist/asp-form-library/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
