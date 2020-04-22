@@ -15,4 +15,4 @@ import { FlexLayoutModule } from "@angular/flex-layout";
   ],
   exports: [CrudDialogComponent],
 })
-export class CrudDialogLibraryModule {}
+export class CrudDialogModule {}
