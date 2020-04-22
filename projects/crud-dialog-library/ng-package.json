@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/asp-form-library",
+  "dest": "../../dist/crud-dialog-library",
   "lib": {
     "entryFile": "src/public-api.ts"
   }

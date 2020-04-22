@@ -19,11 +19,11 @@
       "dom"
     ],
     "paths": {
-      "asp-form-library": [
-        "dist/asp-form-library"
+      "crud-dialog-library": [
+        "dist/crud-dialog-library"
       ],
-      "asp-form-library/*": [
-        "dist/asp-form-library/*"
+      "crud-dialog-library/*": [
+        "dist/crud-dialog-library/*"
       ]
     }
   },

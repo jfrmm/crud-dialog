@@ -1,0 +1,12 @@
+{
+  "name": "@asp-devteam/crud-dialog",
+  "version": "9.0.0",
+  "peerDependencies": {
+    "@angular/common": "~9.1.2",
+    "@angular/cdk": "~9.2.0",
+    "@angular/core": "~9.1.2",
+    "@angular/material": "^9.2.0",
+    "@angular/flex-layout": "^9.0.0-beta"
+  },
+  "repository": "git@gitlab.com:asp-devteam/crud-dialog.git"
+}

@@ -1,13 +1,15 @@
 {
-  "name": "asp-form",
-  "version": "0.0.0",
+  "name": "asp-crud-dialog-library",
+  "version": "9.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build-lib": "ng build crud-dialog-library --prod",
+    "publish-lib": "cd dist/crud-dialog-library && npm publish --access public"
   },
   "private": true,
   "dependencies": {

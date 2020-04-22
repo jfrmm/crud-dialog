@@ -4,25 +4,22 @@
   "newProjectRoot": "projects",
   "projects": {
     "asp-form": {
-      "projectType": "application",
+      "projectType": "library",
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/asp-form",
+            "outputPath": "dist/asp-crud-dialog-library",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
@@ -57,24 +54,30 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "es5": {
+              "tsConfig": "./tsconfig-es5.app.json"
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "asp-form:build"
+            "browserTarget": "asp-crud-dialog-library:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "asp-form:build:production"
+              "browserTarget": "asp-crud-dialog-library:build:production"
+            },
+            "es5": {
+              "browserTarget": "asp-crud-dialog-library:build:es5"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "asp-form:build"
+            "browserTarget": "asp-crud-dialog-library:build"
           }
         },
         "test": {
@@ -84,10 +87,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
@@ -103,67 +103,63 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "asp-form:serve"
+            "devServerTarget": "asp-crud-dialog-library:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "asp-form:serve:production"
+              "devServerTarget": "asp-crud-dialog-library:serve:production"
             }
           }
         }
       }
     },
-    "asp-form-library": {
+    "crud-dialog-library": {
       "projectType": "library",
-      "root": "projects/asp-form-library",
-      "sourceRoot": "projects/asp-form-library/src",
-      "prefix": "tm",
+      "root": "projects/crud-dialog-library",
+      "sourceRoot": "projects/crud-dialog-library/src",
+      "prefix": "asp",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/asp-form-library/tsconfig.lib.json",
-            "project": "projects/asp-form-library/ng-package.json"
+            "tsConfig": "projects/crud-dialog-library/tsconfig.lib.json",
+            "project": "projects/crud-dialog-library/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/asp-form-library/tsconfig.lib.prod.json"
+              "tsConfig": "projects/crud-dialog-library/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/asp-form-library/src/test.ts",
-            "tsConfig": "projects/asp-form-library/tsconfig.spec.json",
-            "karmaConfig": "projects/asp-form-library/karma.conf.js"
+            "main": "projects/crud-dialog-library/src/test.ts",
+            "tsConfig": "projects/crud-dialog-library/tsconfig.spec.json",
+            "karmaConfig": "projects/crud-dialog-library/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/asp-form-library/tsconfig.lib.json",
-              "projects/asp-form-library/tsconfig.spec.json"
+              "projects/crud-dialog-library/tsconfig.lib.json",
+              "projects/crud-dialog-library/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
     }
   },
-  "defaultProject": "asp-form",
+  "defaultProject": "asp-crud-dialog-library",
   "cli": {
     "analytics": false
   }
