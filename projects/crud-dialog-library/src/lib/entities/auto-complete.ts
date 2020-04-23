@@ -1,5 +1,5 @@
 import { FormControl } from "@angular/forms";
-import { Field } from "./field";
+import { Field } from "../field/field";
 import { Observable, of } from "rxjs";
 import {
   filter,
@@ -8,11 +8,11 @@ import {
   switchMap,
 } from "rxjs/operators";
 import { FieldOption } from "../models/field-option.model";
-import { FieldElement } from "./field-element";
+import { FieldElement } from "../field/field-element";
 
-export class AutoCompleteFilter extends Field {
-  protected _elements: FieldElement;
-  public _options: FieldOption[] = [];
+export class AutoCompleteField extends Field {
+  protected elements: FieldElement;
+  public options: FieldOption[] = [];
 
   constructor(
     paramName: string,
@@ -26,18 +26,18 @@ export class AutoCompleteFilter extends Field {
     super(paramName, "autocomplete", options);
 
     const formControl = new FormControl(initialValue, validators);
-    this._options = options;
+    this.options = options;
 
-    this._elements = new FieldElement(
+    this.elements = new FieldElement(
       placeholder,
       formControl,
-      this.filterOptions(formControl),
+      this.fieldOptions(formControl),
       size,
       required
     );
   }
 
-  private filterOptions(formControl: FormControl): Observable<FieldOption[]> {
+  private fieldOptions(formControl: FormControl): Observable<FieldOption[]> {
     return formControl.valueChanges.pipe(
       /*
        * With startwith the list is displayed as soon as focused
@@ -48,7 +48,7 @@ export class AutoCompleteFilter extends Field {
       filter((value) => typeof value === "string"),
       switchMap((fieldTerm: string) =>
         of(
-          this._options.filter((option: FieldOption) =>
+          this.options.filter((option: FieldOption) =>
             option.value.toLowerCase().includes(fieldTerm.toLowerCase())
           )
         )
@@ -57,10 +57,10 @@ export class AutoCompleteFilter extends Field {
   }
 
   protected mapControlsValues(): string {
-    return this._elements.formControl.value;
+    return this.elements.getFormControl.value;
   }
 
   public clearAllElements(): void {
-    this._elements.clear();
+    this.elements.clear();
   }
 }

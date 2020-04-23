@@ -11,7 +11,7 @@ export class FieldHelperService {
     return o1 && o2 ? o1.id === o2.id : o1 === o2;
   }
 
-  public displayField(filterOption?: FieldOption): string | undefined {
-    return filterOption ? filterOption.value : undefined;
+  public displayField(fieldOption?: FieldOption): string | undefined {
+    return fieldOption ? fieldOption.value : undefined;
   }
 }

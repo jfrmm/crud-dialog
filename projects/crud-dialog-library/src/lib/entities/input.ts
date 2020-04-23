@@ -1,9 +1,9 @@
 import { FormControl } from "@angular/forms";
-import { Field } from "./field";
-import { FieldElement } from "./field-element";
+import { Field } from "../field/field";
+import { FieldElement } from "../field/field-element";
 
 export class InputField extends Field {
-  protected _elements: FieldElement;
+  protected elements: FieldElement;
 
   constructor(
     name: string,
@@ -19,7 +19,7 @@ export class InputField extends Field {
       { value: initialValue, disabled },
       validators
     );
-    this._elements = new FieldElement(
+    this.elements = new FieldElement(
       placeholder,
       formControl,
       null,
@@ -29,10 +29,10 @@ export class InputField extends Field {
   }
 
   protected mapControlsValues(): string {
-    return this._elements.formControl.value;
+    return this.elements.getFormControl.value;
   }
 
   public clearAllElements(): void {
-    this._elements.clear();
+    this.elements.clear();
   }
 }

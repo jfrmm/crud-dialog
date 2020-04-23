@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { FieldHelperService } from './field-helper.service';
 
-describe('FilterHelperService', () => {
+describe('FieldHelperService', () => {
   let service: FieldHelperService;
   beforeEach(() => TestBed.configureTestingModule({}));
 

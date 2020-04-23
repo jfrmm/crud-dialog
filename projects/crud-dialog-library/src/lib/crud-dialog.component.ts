@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { Field } from "./entities/field";
+import { Field } from "./field/field";
 import { MatDialogRef } from "@angular/material/dialog";
 import { FieldHelperService } from "./services/field-helper.service";
 import { FormGroup } from "@angular/forms";
@@ -10,7 +10,14 @@ import { FormGroup } from "@angular/forms";
   styles: [],
 })
 export class CrudDialogComponent implements OnInit {
+  @Input()
+  public submitButton: string;
+
+  @Input()
+  public cancelButton: string;
+
   public form: FormGroup;
+
   @Input()
   public fields: Field[];
 
@@ -32,13 +39,14 @@ export class CrudDialogComponent implements OnInit {
   private initForm(): void {
     const group = {};
     this.fields.forEach((element) => {
-      if (element.elements && element.elements.formControl) {
-        group[element.paramName] = element.elements.formControl;
+      if (element.elems && element.elems.getFormControl) {
+        group[element.param] = element.elems.getFormControl;
       }
     });
     this.form = new FormGroup(group);
-    console.log(this.form.get("email").value);
   }
+
+
 
   public onClickSave(): void {
     this.save.emit(this.form);

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InputField } from 'asp-form-library';
-import { LabelField, AutoCompleteFilter } from 'projects/asp-form-library/src/public-api';
-import { of } from 'rxjs';
+import { LabelField, AutoCompleteField, InputField, FieldArray } from 'projects/crud-dialog-library/src/public-api';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Validators } from '@angular/forms';
 
@@ -12,6 +10,7 @@ import { Validators } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
   public readonly title = 'Test Form';
+
   private users = [
     {
       id: 1,
@@ -42,7 +41,7 @@ export class HomeComponent implements OnInit {
       email: 'plima@alter-solutions.com'
     },
   ];
-  public fields: any[];
+  public fields = new FieldArray();
   constructor(
     private dialogRef: MatDialogRef<HomeComponent>
     ) { }
@@ -52,24 +51,22 @@ export class HomeComponent implements OnInit {
   }
 
   initFields() {
-    const autoCompleteUser = new AutoCompleteFilter('user', 'PSA ID', this.users, null, 270, [Validators.required], true);
+    const autoCompleteUser = new AutoCompleteField('user', 'PSA ID', this.users, null, 270, [Validators.required], true);
     const labelForm = new LabelField('Relevant User Information HERE', 230);
     const inputFirstName = new InputField('first_name', 'First Name', null, 250, true);
     const inputLastName = new InputField('last_name', 'Last Name', null, 250, true);
     const inputEmail = new InputField('email', 'Email', null, 524, true);
 
-    this.fields = [
-      autoCompleteUser,
-      labelForm,
-      inputFirstName,
-      inputLastName,
-      inputEmail
-    ];
+    // push fields to the form
+    this.fields.push(autoCompleteUser, labelForm, inputFirstName, inputLastName, inputEmail);
 
-    autoCompleteUser.elements.formControl.valueChanges.subscribe((selectedValue) => {
-      inputFirstName.elements.formControl.setValue(selectedValue.first_name);
-      inputLastName.elements.formControl.setValue(selectedValue.last_name);
-      inputEmail.elements.formControl.setValue(selectedValue.email);
+    autoCompleteUser.elems.getFormControl.valueChanges.subscribe((selectedValue) => {
+      // change values of inputs based on one selected
+      inputFirstName.elems.getFormControl.setValue(selectedValue.first_name);
+      inputLastName.elems.getFormControl.setValue(selectedValue.last_name);
+      inputEmail.elems.getFormControl.setValue(selectedValue.email);
+      // disable field example
+      inputEmail.elems.enableField();
     });
   }
 

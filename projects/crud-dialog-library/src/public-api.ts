@@ -13,8 +13,8 @@ export * from './lib/entities/auto-complete';
 
 /* MODELS */
 export * from './lib/models/field-option.model';
+export * from './lib/field/field-array';
 
 
 /* SERVICES */
 export * from './lib/services/field-helper.service';
-export * from './lib/crud-dialog.service';

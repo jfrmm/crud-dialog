@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "asp-form": {
+    "asp-crud-dialog-library": {
       "projectType": "library",
       "schematics": {},
       "root": "",

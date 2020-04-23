@@ -16,41 +16,41 @@
     >
       <div
         *ngFor="let field of fields"
-        [ngSwitch]="field.type"
+        [ngSwitch]="field.getType"
       >
         <!-- INPUT -->
         <mat-form-field
           *ngSwitchCase="'input'"
-          [ngStyle]="{'width': field.elements?.size ? field.elements.size +'px' : '200px'}"
+          [ngStyle]="{'width': field.elems?.getSize ? field.elems.getSize +'px' : '200px'}"
         >
           <input
             matInput
             type="text"
-            [placeholder]="field.elements.placeholder"
-            [formControlName]="field.paramName"
+            [placeholder]="field.elems.getPlaceholder"
+            [formControlName]="field.param"
             autocomplete="off"
-            [required]="field.elements.required ? field.elements.required : false"
+            [required]="field.elems.getRequired ? field.elems.getRequired : false"
           >
         </mat-form-field>
         <!-- LABEL -->
         <div
           *ngSwitchCase="'label'"
-          [ngStyle]="{'width': field.elements?.size ? field.elements.size +'px' : null}"
+          [ngStyle]="{'width': field.elems?.getSize ? field.elems.getSize +'px' : null}"
         >
-          {{ field.elements.placeholder }}
+          {{ field.elems.getPlaceholder }}
         </div>
         <!-- AUTOCOMPLETE -->
         <mat-form-field
           *ngSwitchCase="'autocomplete'"
-          [ngStyle]="{'width': field.elements?.size ? field.elements.size +'px' : '200px'}"
+          [ngStyle]="{'width': field.elems?.getSize ? field.elems.getSize +'px' : '200px'}"
         >
           <input
             type="text"
             matInput
-            [formControl]="field.elements.formControl"
-            [placeholder]="field.elements.placeholder"
+            [formControl]="field.elems.getFormControl"
+            [placeholder]="field.elems.getPlaceholder"
             [matAutocomplete]="auto"
-            [required]="field.elements.required ? field.elements.required : false"
+            [required]="field.elems.getRequired ? field.elems.getRequired : false"
             focused="false"
           >
           <mat-autocomplete
@@ -59,7 +59,7 @@
             [displayWith]="fieldHelper.displayField"
           >
             <mat-option
-              *ngFor="let fieldOption of field.elements.options | async"
+              *ngFor="let fieldOption of field.elems.getOptions | async"
               [value]="fieldOption"
             >
               {{ fieldOption.value }}
@@ -80,7 +80,7 @@
     (click)="onClickSave()"
     [disabled]="!form.valid || !form.dirty"
   >
-    Save
+    {{ submitButton ? submitButton : 'Submit' }}
   </button>
   <div fxFlex="1"></div>
   <button
@@ -89,6 +89,6 @@
     (click)="onClickCancel()"
     i18n
   >
-    Cancel
+    {{ cancelButton ? cancelButton : 'Cancel' }}
   </button>
 </div>
