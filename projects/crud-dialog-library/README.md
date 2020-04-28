@@ -1,24 +1,127 @@
 # AspFormLibrary
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.14.
+<!-- This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.14. -->
+This library provides a simple way to create simple CRUD, abstracting from all the logic.
 
-## Code scaffolding
+> **CRUD Library** is an Angular package developed by ALTER SOLUTIONS PORTUGAL. It has been developed using Angular 9.0.
 
-Run `ng generate component component-name --project asp-form-library` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project asp-form-library`.
-> Note: Don't forget to add `--project asp-form-library` or else it will be added to the default project in your `angular.json` file. 
+## Table of Contents
+- [Getting started](#getting-started)
+- [Usage](#usage)
+- [Customize at component level](#customize-at-component-level)
+  - [Basic fields](#basic-fields)
+  - [field-array](#field-array)
 
-## Build
+## Getting started
+Run `npm install @asp-devteam/crud-dialog` to install the package in your project.
 
-Run `ng build asp-form-library` to build the project. The build artifacts will be stored in the `dist/` directory.
+> Be aware that this package requires some peer dependencies to be installed:
+>
+> - "@angular/common"
+> - "@angular/cdk"
+> - "@angular/core"
+> - "@angular/material"
+> - "@angular/flex-layout"
+>   project
 
-## Publishing
+## Usage
+Next import the `CrudDialogModule ` into your application.
 
-After building your library with `ng build asp-form-library`, go to the dist folder `cd dist/asp-form-library` and run `npm publish`.
+```typescript
+import { CrudDialogModule  } from '@asp-devteam/crud-dialog';
 
-## Running unit tests
+@NgModule({
+  declarations: [AppComponent],
+  imports: [CrudDialogModule],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
 
-Run `ng test asp-form-library` to execute the unit tests via [Karma](https://karma-runner.github.io).
+If you intend to use the CRUD library in multiple places accross your app, its recommended that you create a separate NgModule that imports and then exports all of your shared modules.
 
-## Further help
+```typescript
+import { CrudDialogModule  } from '@asp-devteam/crud-dialog';
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+@NgModule({
+  declarations: [],
+  imports: [CrudDialogModule],
+  exports: [CrudDialogModule]
+})
+export class SharedModule {}
+```
+
+## Customize at component level
+
+```html
+<asp-crud-dialog ... [submitButton]="'Yes'" [cancelButton]="'No'"></asp-crud-dialog>
+```
+
+### Basic fields
+<ul>
+    <li>Autocomplete Field</li>
+    <li>Label</li>
+    <li>Input Field</li>
+</ul>
+To set up a CRUD dialog, start by instanciating the fields you want to use.
+
+```typescript
+import { LabelField, AutoCompleteField, InputField, FieldArray } from 'projects/crud-dialog-library/src/public-api';
+
+fields = new FieldArray();
+
+this.fields.push(
+  new AutoCompleteField('user', 'PSA ID', this.users, null, 270, [Validators.required], true),
+  new InputField('first_name', 'First Name', null, 250, true)
+);
+```
+
+Next, insert the `` selector in your template.
+
+```html
+<asp-crud-dialog [fields]="fields"></asp-crud-dialog>
+```
+
+Can get all the formControl options shown below.
+
+```typescript
+this.fields[0].elems.getFormControl.valueChanges.subscribe((selectedValue) => {
+  // change values of inputs based on one selected
+  this.fields[1].elems.getFormControl.setValue('test');
+  // disable field example
+  this.fields[1].elems.enableField();
+});
+```
+
+Declare a save function.
+
+```typescript
+public save(form): void {
+    this.someService.save(form).subscribe(response => {
+      console.log(response);
+    });
+  }
+```
+And add it to your template.
+
+```html
+<asp-crud-dialog (save)="save($event)"></asp-crud-dialog>
+```
+
+Change value buttons by default his 'Submit' and 'Cancel'.
+
+```html
+<asp-crud-dialog [submitButton]="'Yes'" [cancelButton]="'No'"></asp-crud-dialog>
+```
+
+### Field Array
+
+The `Field Array` class not only provides the `Array API` but also some additional helper methods. These are:
+-get(name) -> Returns the field which name matches the given name;
+
+Additionaly, to avoid collisions, the field array will throw an error if there are two fields with the same name.
+
+---
+
+Copyright 2020 Alter Solutions Portugal
