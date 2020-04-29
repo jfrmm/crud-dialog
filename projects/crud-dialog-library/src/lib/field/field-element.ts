@@ -1,9 +1,8 @@
-import { FormControl } from "@angular/forms";
-import { Observable } from "rxjs";
-import { FieldOption } from "../models/field-option.model";
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { FieldOption } from '../models/field-option.model';
 import { FieldEvent } from '../events/field-event';
 import { FieldEnabledEvent } from '../events/field-enabled-event';
-import { Field } from 'dist/asp-form-library/lib/entities/field';
 import { FieldDisabledEvent } from '../events/field-disabled-event';
 
 export class FieldElement {

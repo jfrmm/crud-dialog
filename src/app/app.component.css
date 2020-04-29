@@ -1,9 +1,9 @@
 .wrapper {
-  text-align: center;
+    text-align: center;
 }
 
 button {
-  position: absolute;
-  top: 48%;
-  left: 48%;
+    position: absolute;
+    top: 48%;
+    left: 48%;
 }

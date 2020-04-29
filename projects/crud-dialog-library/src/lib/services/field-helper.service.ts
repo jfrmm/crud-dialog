@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { FieldOption } from "../models/field-option.model";
+import { Injectable } from '@angular/core';
+import { FieldOption } from '../models/field-option.model';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class FieldHelperService {
   constructor() {}

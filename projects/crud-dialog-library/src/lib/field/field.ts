@@ -1,10 +1,10 @@
-import { FieldElement } from "./field-element";
-import { FieldOption } from "../models/field-option.model";
+import { FieldElement } from './field-element';
+import { FieldOption } from '../models/field-option.model';
 
 export abstract class Field {
   private paramName: string;
 
-  private type: "input" | "autocomplete" | "label";
+  private type: 'input' | 'autocomplete' | 'label';
 
   protected elements: FieldElement;
 
@@ -32,7 +32,7 @@ export abstract class Field {
 
   constructor(
     paramName: string,
-    type: "input" | "autocomplete" | "label",
+    type: 'input' | 'autocomplete' | 'label',
     options?: FieldOption[]
   ) {
     this.paramName = paramName;

@@ -1,1 +1,7 @@
-<asp-crud-dialog [fields]="fields" [title]="title" (save)="save($event)" [submitButton]="'Yes'" [cancelButton]="'No'"></asp-crud-dialog>
+<asp-crud-dialog
+  [title]="title"
+  [fields]="fields"
+  [submitButton]="'Yes'"
+  [cancelButton]="'No'"
+  (save)="save($event)"
+></asp-crud-dialog>

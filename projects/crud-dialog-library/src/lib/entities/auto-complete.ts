@@ -1,14 +1,14 @@
-import { FormControl } from "@angular/forms";
-import { Field } from "../field/field";
-import { Observable, of } from "rxjs";
+import { FormControl } from '@angular/forms';
+import { Field } from '../field/field';
+import { Observable, of } from 'rxjs';
 import {
   filter,
   startWith,
   distinctUntilChanged,
   switchMap,
-} from "rxjs/operators";
-import { FieldOption } from "../models/field-option.model";
-import { FieldElement } from "../field/field-element";
+} from 'rxjs/operators';
+import { FieldOption } from '../models/field-option.model';
+import { FieldElement } from '../field/field-element';
 
 export class AutoCompleteField extends Field {
   protected elements: FieldElement;
@@ -23,7 +23,7 @@ export class AutoCompleteField extends Field {
     validators?: any[],
     required?: boolean
   ) {
-    super(paramName, "autocomplete", options);
+    super(paramName, 'autocomplete', options);
 
     const formControl = new FormControl(initialValue, validators);
     this.options = options;
@@ -43,9 +43,9 @@ export class AutoCompleteField extends Field {
        * With startwith the list is displayed as soon as focused
        * without it, it will be empty first time its focused, until user types something
        */
-      startWith(""),
+      startWith(''),
       distinctUntilChanged(),
-      filter((value) => typeof value === "string"),
+      filter((value) => typeof value === 'string'),
       switchMap((fieldTerm: string) =>
         of(
           this.options.filter((option: FieldOption) =>

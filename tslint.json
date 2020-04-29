@@ -37,6 +37,15 @@
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
 
+    "rxjs-add": {
+      "options": [
+        {
+          "allowElsewhere": false,
+          "allowUnused": false
+        }
+      ],
+      "severity": "error"
+    },
     "rxjs-no-internal": {
       "severity": "error"
     },
@@ -48,6 +57,7 @@
       ],
       "severity": "error"
     },
+
     "no-unbound-method": true,
     "no-sparse-arrays": true,
     "no-boolean-literal-compare": true,

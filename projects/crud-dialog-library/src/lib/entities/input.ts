@@ -1,6 +1,6 @@
-import { FormControl } from "@angular/forms";
-import { Field } from "../field/field";
-import { FieldElement } from "../field/field-element";
+import { FormControl } from '@angular/forms';
+import { Field } from '../field/field';
+import { FieldElement } from '../field/field-element';
 
 export class InputField extends Field {
   protected elements: FieldElement;
@@ -14,7 +14,7 @@ export class InputField extends Field {
     validators?: any[],
     required?: boolean
   ) {
-    super(name, "input");
+    super(name, 'input');
     const formControl = new FormControl(
       { value: initialValue, disabled },
       validators
