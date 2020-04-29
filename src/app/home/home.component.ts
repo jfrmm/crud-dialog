@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  LabelField,
-  AutoCompleteField,
-  InputField,
-  FieldArray,
-} from 'projects/crud-dialog-library/src/public-api';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Validators } from '@angular/forms';
+import {
+  FieldArray,
+  AutoCompleteField,
+  InputField,
+  LabelField,
+} from 'projects/crud-dialog-library/src/public-api';
 
 @Component({
   selector: 'app-home',

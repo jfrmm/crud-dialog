@@ -1,12 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { Field } from "./field/field";
-import { MatDialogRef } from "@angular/material/dialog";
-import { FieldHelperService } from "./services/field-helper.service";
-import { FormGroup } from "@angular/forms";
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { FormGroup } from '@angular/forms';
+
+import { Field } from './field/field';
+import { FieldHelperService } from './services/field-helper.service';
 
 @Component({
-  selector: "asp-crud-dialog",
-  templateUrl: "./crud-dialog.component.html",
+  selector: 'asp-crud-dialog',
+  templateUrl: './crud-dialog.component.html',
   styles: [],
 })
 export class CrudDialogComponent implements OnInit {
@@ -45,8 +46,6 @@ export class CrudDialogComponent implements OnInit {
     });
     this.form = new FormGroup(group);
   }
-
-
 
   public onClickSave(): void {
     this.save.emit(this.form);

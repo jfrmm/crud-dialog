@@ -1,5 +1,6 @@
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
+
 import { FieldOption } from '../models/field-option.model';
 import { FieldEvent } from '../events/field-event';
 import { FieldEnabledEvent } from '../events/field-enabled-event';

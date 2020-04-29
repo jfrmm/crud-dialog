@@ -1,5 +1,4 @@
 import { FormControl } from '@angular/forms';
-import { Field } from '../field/field';
 import { Observable, of } from 'rxjs';
 import {
   filter,
@@ -7,6 +6,8 @@ import {
   distinctUntilChanged,
   switchMap,
 } from 'rxjs/operators';
+
+import { Field } from '../field/field';
 import { FieldOption } from '../models/field-option.model';
 import { FieldElement } from '../field/field-element';
 
