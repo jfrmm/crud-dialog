@@ -5,9 +5,12 @@ import { FieldOption } from '../models/field-option.model';
 import { FieldEvent } from '../events/field-event';
 import { FieldEnabledEvent } from '../events/field-enabled-event';
 import { FieldDisabledEvent } from '../events/field-disabled-event';
+import { ErrorsType } from 'crud-dialog-library/lib/models/errors-type.model';
 
 export class FieldElement {
   private formControl: FormControl;
+
+  private errorsType: ErrorsType[];
 
   private placeholder: string;
 
@@ -16,6 +19,10 @@ export class FieldElement {
   private size: number;
 
   private required: boolean;
+
+  get getErrorsType(): ErrorsType[] {
+    return this.errorsType;
+  }
 
   get getFormControl(): FormControl {
     return this.formControl;
@@ -42,13 +49,15 @@ export class FieldElement {
     formControl: FormControl,
     options: any,
     size?: number,
-    required?: boolean
+    required?: boolean,
+    errorsType?: ErrorsType[]
   ) {
     this.placeholder = placeholder;
     this.formControl = formControl;
     this.options = options;
     this.size = size;
     this.required = required;
+    this.errorsType = errorsType;
   }
 
   public clear(): void {

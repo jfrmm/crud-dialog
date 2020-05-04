@@ -10,6 +10,7 @@ import {
 import { Field } from '../field/field';
 import { FieldOption } from '../models/field-option.model';
 import { FieldElement } from '../field/field-element';
+import { FieldValidation } from '../models/field-validation.model';
 
 export class AutoCompleteField extends Field {
   protected elements: FieldElement;
@@ -21,12 +22,12 @@ export class AutoCompleteField extends Field {
     options: FieldOption[],
     initialValue: FieldOption = null,
     size?: number,
-    validators?: any[],
+    fieldValidation?: FieldValidation,
     required?: boolean
   ) {
     super(paramName, 'autocomplete', options);
 
-    const formControl = new FormControl(initialValue, validators);
+    const formControl = new FormControl(initialValue, fieldValidation ? fieldValidation.validators: []);
     this.options = options;
 
     this.elements = new FieldElement(
@@ -34,7 +35,8 @@ export class AutoCompleteField extends Field {
       formControl,
       this.fieldOptions(formControl),
       size,
-      required
+      required,
+      fieldValidation ? fieldValidation.customErrors: []
     );
   }
 

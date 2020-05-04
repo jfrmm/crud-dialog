@@ -10,6 +10,7 @@ export * from './lib/crud-dialog.module';
 export * from './lib/entities/input';
 export * from './lib/entities/label';
 export * from './lib/entities/auto-complete';
+export * from './lib/entities/text-area';
 
 /* MODELS */
 export * from './lib/models/field-option.model';

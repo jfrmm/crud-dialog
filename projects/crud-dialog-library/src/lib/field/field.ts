@@ -4,7 +4,7 @@ import { FieldOption } from '../models/field-option.model';
 export abstract class Field {
   private paramName: string;
 
-  private type: 'input' | 'autocomplete' | 'label';
+  private type: 'input' | 'autocomplete' | 'label' | 'textArea';
 
   protected elements: FieldElement;
 
@@ -32,7 +32,7 @@ export abstract class Field {
 
   constructor(
     paramName: string,
-    type: 'input' | 'autocomplete' | 'label',
+    type: 'input' | 'autocomplete' | 'label' | 'textArea',
     options?: FieldOption[]
   ) {
     this.paramName = paramName;

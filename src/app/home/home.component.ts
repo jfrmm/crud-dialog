@@ -6,6 +6,7 @@ import {
   AutoCompleteField,
   InputField,
   LabelField,
+  TextArea
 } from 'projects/crud-dialog-library/src/public-api';
 
 @Component({
@@ -56,11 +57,19 @@ export class HomeComponent implements OnInit {
   initFields() {
     const autoCompleteUser = new AutoCompleteField(
       'user',
-      'PSA ID',
+      'ID',
       this.users,
       null,
       270,
-      [Validators.required],
+      {
+        validators: [Validators.required],
+        customErrors: [
+          {
+            key:'required',
+            message: 'Field is required'
+          },
+        ]
+      },
       true
     );
     const labelForm = new LabelField('Relevant User Information HERE', 230);
@@ -69,16 +78,45 @@ export class HomeComponent implements OnInit {
       'First Name',
       null,
       250,
-      true
+      null,
+      true,
     );
     const inputLastName = new InputField(
       'last_name',
       'Last Name',
       null,
       250,
+      null,
       true
     );
-    const inputEmail = new InputField('email', 'Email', null, 524, true);
+    const inputEmail = new InputField(
+      'email',
+      'Email',
+      null,
+      524,
+      {
+        validators: [Validators.required, Validators.email],
+        customErrors: [
+          {
+            key:'required',
+            message: 'Field is required'
+          },
+          {
+            key:'email',
+            message: 'Email invalid'
+          }
+        ]
+      },
+      null,
+      true
+    );
+    const textArea = new TextArea(
+      'textArea',
+      'Place your comment here...',
+      null,
+      524,
+      null,
+    );
 
     // push fields to the form
     this.fields.push(
@@ -86,7 +124,8 @@ export class HomeComponent implements OnInit {
       labelForm,
       inputFirstName,
       inputLastName,
-      inputEmail
+      inputEmail,
+      textArea
     );
 
     autoCompleteUser.elems.getFormControl.valueChanges.subscribe(

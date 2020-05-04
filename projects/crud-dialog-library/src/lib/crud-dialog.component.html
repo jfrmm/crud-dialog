@@ -32,6 +32,14 @@
               autocomplete="off"
               [required]="field.elems.getRequired ? field.elems.getRequired : false"
             >
+            <!-- <mat-error *ngIf="getFormControl(field.param).hasError('required')">
+              Field is <strong>required</strong>
+            </mat-error> -->
+            <mat-error *ngFor="let error of field.elems.getErrorsType">
+              <mat-error *ngIf="getFormControl(field.param).hasError(error.key)">
+                {{error.message}}
+              </mat-error>
+            </mat-error>
           </mat-form-field>
           <!-- LABEL -->
           <div
@@ -66,6 +74,29 @@
                 {{ fieldOption.value }}
               </mat-option>
             </mat-autocomplete>
+            <mat-error *ngFor="let error of field.elems.getErrorsType">
+              <mat-error *ngIf="getFormControl(field.param).hasError(error.key)">
+                {{error.message}}
+              </mat-error>
+            </mat-error>
+          </mat-form-field>
+          <!-- TextArea -->
+          <mat-form-field 
+            *ngSwitchCase="'textArea'"
+            [ngStyle]="{'width': field.elems?.getSize ? field.elems.getSize +'px' : '200px'}"
+          >
+            <mat-label>Leave a comment</mat-label>
+            <textarea 
+              matInput 
+              [formControl]="field.elems.getFormControl"
+              [placeholder]="field.elems.getPlaceholder"
+              [required]="field.elems.getRequired ? field.elems.getRequired : false"
+            ></textarea>
+            <mat-error *ngFor="let error of field.elems.getErrorsType">
+              <mat-error *ngIf="getFormControl(field.param).hasError(error.key)">
+                {{error.message}}
+              </mat-error>
+            </mat-error>
           </mat-form-field>
         </div>
       </div>

@@ -2,10 +2,9 @@ import { FormControl } from '@angular/forms';
 
 import { Field } from '../field/field';
 import { FieldElement } from '../field/field-element';
-import { ErrorsType } from '../models/errors-type.model';
 import { FieldValidation } from '../models/field-validation.model';
 
-export class InputField extends Field {
+export class TextArea extends Field {
   protected elements: FieldElement;
 
   constructor(
@@ -17,7 +16,7 @@ export class InputField extends Field {
     disabled?: boolean,
     required?: boolean
   ) {
-    super(name, 'input');
+    super(name, 'textArea');
     const formControl = new FormControl(
       { value: initialValue, disabled },
       fieldValidation ? fieldValidation.validators : []

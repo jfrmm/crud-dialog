@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 
 import { Field } from './field/field';
 import { FieldHelperService } from './services/field-helper.service';
@@ -27,6 +27,10 @@ export class CrudDialogComponent implements OnInit {
 
   @Output()
   public save = new EventEmitter();
+
+  public getFormControl(name: string): FormControl {
+    return this.form.get(name) as FormControl
+  }
 
   constructor(
     private dialogRef: MatDialogRef<CrudDialogComponent>,
