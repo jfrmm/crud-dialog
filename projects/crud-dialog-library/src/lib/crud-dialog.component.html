@@ -1,94 +1,103 @@
-<div mat-dialog-title>
-  <h1 mat-dialog-title>{{title}}</h1>
-</div>
-<div
-  mat-dialog-content
-  *ngIf="form"
->
-  <form
-    class="form-container"
-    [formGroup]="form"
+<ng-container *ngIf="fields && fields.length != 0; else loading">
+  <div mat-dialog-title>
+    <h1 mat-dialog-title>{{title}}</h1>
+  </div>
+  <div
+    mat-dialog-content
+    *ngIf="form"
   >
-    <div
-      fxLayout="row wrap"
-      fxLayoutGap="24px"
-      fxLayoutAlign="start baseline"
+    <form
+      class="form-container"
+      [formGroup]="form"
     >
       <div
-        *ngFor="let field of fields"
-        [ngSwitch]="field.getType"
+        fxLayout="row wrap"
+        fxLayoutGap="24px"
+        fxLayoutAlign="start baseline"
       >
-        <!-- INPUT -->
-        <mat-form-field
-          *ngSwitchCase="'input'"
-          [ngStyle]="{'width': field.elems?.getSize ? field.elems.getSize +'px' : '200px'}"
-        >
-          <input
-            matInput
-            type="text"
-            [placeholder]="field.elems.getPlaceholder"
-            [formControlName]="field.param"
-            autocomplete="off"
-            [required]="field.elems.getRequired ? field.elems.getRequired : false"
-          >
-        </mat-form-field>
-        <!-- LABEL -->
         <div
-          *ngSwitchCase="'label'"
-          [ngStyle]="{'width': field.elems?.getSize ? field.elems.getSize +'px' : null}"
+          *ngFor="let field of fields"
+          [ngSwitch]="field.getType"
         >
-          {{ field.elems.getPlaceholder }}
-        </div>
-        <!-- AUTOCOMPLETE -->
-        <mat-form-field
-          *ngSwitchCase="'autocomplete'"
-          [ngStyle]="{'width': field.elems?.getSize ? field.elems.getSize +'px' : '200px'}"
-        >
-          <input
-            type="text"
-            matInput
-            [formControl]="field.elems.getFormControl"
-            [placeholder]="field.elems.getPlaceholder"
-            [matAutocomplete]="auto"
-            [required]="field.elems.getRequired ? field.elems.getRequired : false"
-            focused="false"
+          <!-- INPUT -->
+          <mat-form-field
+            *ngSwitchCase="'input'"
+            [ngStyle]="{'width': field.elems?.getSize ? field.elems.getSize +'px' : '200px'}"
           >
-          <mat-autocomplete
-            autoActiveFirstOption
-            #auto="matAutocomplete"
-            [displayWith]="fieldHelper.displayField"
-          >
-            <mat-option
-              *ngFor="let fieldOption of field.elems.getOptions | async"
-              [value]="fieldOption"
+            <input
+              matInput
+              type="text"
+              [placeholder]="field.elems.getPlaceholder"
+              [formControlName]="field.param"
+              autocomplete="off"
+              [required]="field.elems.getRequired ? field.elems.getRequired : false"
             >
-              {{ fieldOption.value }}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
+          </mat-form-field>
+          <!-- LABEL -->
+          <div
+            *ngSwitchCase="'label'"
+            [ngStyle]="{'width': field.elems?.getSize ? field.elems.getSize +'px' : null}"
+          >
+            {{ field.elems.getPlaceholder }}
+          </div>
+          <!-- AUTOCOMPLETE -->
+          <mat-form-field
+            *ngSwitchCase="'autocomplete'"
+            [ngStyle]="{'width': field.elems?.getSize ? field.elems.getSize +'px' : '200px'}"
+          >
+            <input
+              type="text"
+              matInput
+              [formControl]="field.elems.getFormControl"
+              [placeholder]="field.elems.getPlaceholder"
+              [matAutocomplete]="auto"
+              [required]="field.elems.getRequired ? field.elems.getRequired : false"
+              focused="false"
+            >
+            <mat-autocomplete
+              autoActiveFirstOption
+              #auto="matAutocomplete"
+              [displayWith]="fieldHelper.displayField"
+            >
+              <mat-option
+                *ngFor="let fieldOption of field.elems.getOptions | async"
+                [value]="fieldOption"
+              >
+                {{ fieldOption.value }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
       </div>
+    </form>
+  </div>
+  <div
+    mat-dialog-actions
+    fxLayoutAlign="end center"
+  >
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="onClickSave()"
+      [disabled]="!form.valid || !form.dirty"
+    >
+      {{ submitButton ? submitButton : 'Submit' }}
+    </button>
+    <div fxFlex="1"></div>
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="onClickCancel()"
+      i18n
+    >
+      {{ cancelButton ? cancelButton : 'Cancel' }}
+    </button>
+  </div>
+</ng-container>
+<ng-template #loading>
+  <div fxFlexLayout="row">
+    <div fxFlex fxLayoutAlign="center center">
+      <mat-spinner></mat-spinner>
     </div>
-  </form>
-</div>
-<div
-  mat-dialog-actions
-  fxLayoutAlign="end center"
->
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="onClickSave()"
-    [disabled]="!form.valid || !form.dirty"
-  >
-    {{ submitButton ? submitButton : 'Submit' }}
-  </button>
-  <div fxFlex="1"></div>
-  <button
-    mat-raised-button
-    color="warn"
-    (click)="onClickCancel()"
-    i18n
-  >
-    {{ cancelButton ? cancelButton : 'Cancel' }}
-  </button>
-</div>
+  </div>
+</ng-template>
