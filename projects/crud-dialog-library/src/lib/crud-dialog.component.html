@@ -110,7 +110,7 @@
       mat-raised-button
       color="primary"
       (click)="onClickSave()"
-      [disabled]="!form.valid || !form.dirty"
+      [disabled]="!form.valid || !form.dirty && fields[0].getType !== 'label'"
     >
       {{ submitButton ? submitButton : 'Submit' }}
     </button>

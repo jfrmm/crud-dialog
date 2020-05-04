@@ -45,6 +45,7 @@ export class CrudDialogComponent implements OnInit {
     const group = {};
     this.fields.forEach((element) => {
       if (element.elems && element.elems.getFormControl) {
+        console.log(1);
         group[element.param] = element.elems.getFormControl;
       }
     });

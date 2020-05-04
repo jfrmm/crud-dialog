@@ -83,15 +83,30 @@ fields = new FieldArray();
 
 this.fields.push(
   new AutoCompleteField(
-    "user",
-    "PSA ID",
+    'user',
+    'ID',
     this.users,
     null,
     270,
-    [Validators.required],
+    {
+      validators: [Validators.required],
+      customErrors: [
+        {
+          key:'required',
+          message: 'Field is required'
+        },
+      ]
+    },
     true
   ),
-  new InputField("first_name", "First Name", null, 250, true)
+  new InputField(
+    'first_name',
+    'First Name',
+    null,
+    250,
+    null,
+    true
+  )
 );
 ```
 
