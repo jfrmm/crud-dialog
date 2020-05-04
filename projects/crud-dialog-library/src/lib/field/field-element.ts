@@ -50,7 +50,7 @@ export class FieldElement {
     options: any,
     size?: number,
     required?: boolean,
-    errorsType?: ErrorsType[]
+    errorsType?: ErrorsType[],
   ) {
     this.placeholder = placeholder;
     this.formControl = formControl;

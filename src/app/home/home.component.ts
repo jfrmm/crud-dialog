@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit {
       },
       true
     );
-    const labelForm = new LabelField('Relevant User Information HERE', 230);
+    const labelForm = new LabelField('Relevant User Information <b>HERE</b> ', 230);
     const inputFirstName = new InputField(
       'first_name',
       'First Name',

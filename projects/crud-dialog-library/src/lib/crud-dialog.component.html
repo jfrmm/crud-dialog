@@ -46,7 +46,7 @@
             *ngSwitchCase="'label'"
             [ngStyle]="{'width': field.elems?.getSize ? field.elems.getSize +'px' : null}"
           >
-            {{ field.elems.getPlaceholder }}
+            <span [innerHtml]="field.elems.getPlaceholder"></span>
           </div>
           <!-- AUTOCOMPLETE -->
           <mat-form-field
