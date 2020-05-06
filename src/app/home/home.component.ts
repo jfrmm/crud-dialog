@@ -6,7 +6,7 @@ import {
   AutoCompleteField,
   InputField,
   LabelField,
-  TextArea
+  TextArea,
 } from 'projects/crud-dialog-library/src/public-api';
 
 @Component({
@@ -66,14 +66,17 @@ export class HomeComponent implements OnInit {
       },
       true
     );
-    const labelForm = new LabelField('Relevant User Information <b>HERE</b> ', 230);
+    const labelForm = new LabelField(
+      'Relevant User Information <b>HERE</b> ',
+      230
+    );
     const inputFirstName = new InputField(
       'first_name',
       'First Name',
       null,
       250,
       null,
-      true,
+      true
     );
     const inputLastName = new InputField(
       'last_name',
@@ -99,7 +102,7 @@ export class HomeComponent implements OnInit {
       'Place your comment here...',
       null,
       524,
-      null,
+      null
     );
 
     // push fields to the form

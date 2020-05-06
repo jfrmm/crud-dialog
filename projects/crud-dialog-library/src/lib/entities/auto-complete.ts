@@ -27,7 +27,10 @@ export class AutoCompleteField extends Field {
   ) {
     super(paramName, 'autocomplete', options);
 
-    const formControl = new FormControl(initialValue, fieldValidation ? fieldValidation.validators: []);
+    const formControl = new FormControl(
+      initialValue,
+      fieldValidation ? fieldValidation.validators : []
+    );
     this.options = options;
 
     this.elements = new FieldElement(

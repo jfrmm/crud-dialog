@@ -24,14 +24,14 @@
             *ngSwitchCase="'input'"
             [ngStyle]="{'width': field.elems?.getSize ? field.elems.getSize +'px' : '200px'}"
           >
-          <input
-            matInput
-            type="text"
-            [placeholder]="field.elems.getPlaceholder"
-            [formControlName]="field.param"
-            autocomplete="off"
-            [required]="field.elems.getRequired ? field.elems.getRequired : false"
-          >
+            <input
+              matInput
+              type="text"
+              [placeholder]="field.elems.getPlaceholder"
+              [formControlName]="field.param"
+              autocomplete="off"
+              [required]="field.elems.getRequired ? field.elems.getRequired : false"
+            >
             <mat-error *ngIf="getFormControl(field.param).hasError('required')">
               {{ (field.param).toUpperCase() + ' is required'}}
             </mat-error>
@@ -46,15 +46,12 @@
             </mat-error>
             <mat-error *ngIf="field.elems.getErrorsType">
               <ng-container *ngFor="let error of field.elems.getErrorsType.customErrors">
-              <mat-error *ngIf="getFormControl(field.param).hasError(error.key) 
+                <mat-error *ngIf="getFormControl(field.param).hasError(error.key) 
                 && !getFormControl(field.param).hasError('email') 
                 && !getFormControl(field.param).hasError('maxLength')
                 && !getFormControl(field.param).hasError('minLength')
-                && !getFormControl(field.param).hasError('required')"
-              >
-                {{error.message}}
-              </mat-error>
-            </ng-container>
+                && !getFormControl(field.param).hasError('required')">{{error.message}}</mat-error>
+              </ng-container>
             </mat-error>
           </mat-form-field>
           <!-- LABEL -->
@@ -104,25 +101,22 @@
             </mat-error>
             <mat-error *ngIf="field.elems.getErrorsType">
               <ng-container *ngFor="let error of field.elems.getErrorsType.customErrors">
-              <mat-error *ngIf="getFormControl(field.param).hasError(error.key) 
+                <mat-error *ngIf="getFormControl(field.param).hasError(error.key) 
                 && !getFormControl(field.param).hasError('email') 
                 && !getFormControl(field.param).hasError('maxLength')
                 && !getFormControl(field.param).hasError('minLength')
-                && !getFormControl(field.param).hasError('required')"
-              >
-                {{error.message}}
-              </mat-error>
-            </ng-container>
+                && !getFormControl(field.param).hasError('required')">{{error.message}}</mat-error>
+              </ng-container>
             </mat-error>
           </mat-form-field>
           <!-- TextArea -->
-          <mat-form-field 
+          <mat-form-field
             *ngSwitchCase="'textArea'"
             [ngStyle]="{'width': field.elems?.getSize ? field.elems.getSize +'px' : '200px'}"
           >
             <mat-label>Leave a comment</mat-label>
-            <textarea 
-              matInput 
+            <textarea
+              matInput
               [formControl]="field.elems.getFormControl"
               [placeholder]="field.elems.getPlaceholder"
               [required]="field.elems.getRequired ? field.elems.getRequired : false"
@@ -141,15 +135,12 @@
             </mat-error>
             <mat-error *ngIf="field.elems.getErrorsType">
               <ng-container *ngFor="let error of field.elems.getErrorsType.customErrors">
-              <mat-error *ngIf="getFormControl(field.param).hasError(error.key) 
+                <mat-error *ngIf="getFormControl(field.param).hasError(error.key) 
                 && !getFormControl(field.param).hasError('email') 
                 && !getFormControl(field.param).hasError('maxLength')
                 && !getFormControl(field.param).hasError('minLength')
-                && !getFormControl(field.param).hasError('required')"
-              >
-                {{error.message}}
-              </mat-error>
-            </ng-container>
+                && !getFormControl(field.param).hasError('required')">{{error.message}}</mat-error>
+              </ng-container>
             </mat-error>
           </mat-form-field>
         </div>
@@ -181,7 +172,10 @@
 </ng-container>
 <ng-template #loading>
   <div fxFlexLayout="row">
-    <div fxFlex fxLayoutAlign="center center">
+    <div
+      fxFlex
+      fxLayoutAlign="center center"
+    >
       <mat-spinner></mat-spinner>
     </div>
   </div>
