@@ -30,7 +30,7 @@ export class CrudDialogComponent implements OnInit {
   public title: string;
 
   @Output()
-  public save = new EventEmitter();
+  public submit = new EventEmitter();
 
   public getFormControl(name: string): FormControl {
     return this.form.get(name) as FormControl;
@@ -60,7 +60,7 @@ export class CrudDialogComponent implements OnInit {
   }
 
   public onClickSave(): void {
-    this.save.emit(this.form);
+    this.submit.emit(this.form);
   }
 
   public onClickCancel(): void {

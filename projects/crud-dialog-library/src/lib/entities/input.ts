@@ -2,7 +2,6 @@ import { FormControl } from '@angular/forms';
 
 import { Field } from '../field/field';
 import { FieldElement } from '../field/field-element';
-import { ErrorsType } from '../models/errors-type.model';
 import { FieldValidation } from '../models/field-validation.model';
 
 export class InputField extends Field {
@@ -11,7 +10,7 @@ export class InputField extends Field {
   constructor(
     name: string,
     placeholder: string,
-    initialValue?: string,
+    initialValue?: string | number,
     size?: number,
     fieldValidation?: FieldValidation,
     disabled?: boolean,
