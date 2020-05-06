@@ -4,6 +4,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 import { Field } from './field/field';
 import { FieldHelperService } from './services/field-helper.service';
+import { Subject } from 'rxjs';
+import { FieldArray } from './field/field-array';
 
 @Component({
   selector: 'asp-crud-dialog',
@@ -20,6 +22,8 @@ export class CrudDialogComponent implements OnInit {
   public form: FormGroup;
 
   @Input()
+  public fieldArray: Subject<FieldArray>;
+
   public fields: Field[];
 
   @Input()
@@ -29,7 +33,7 @@ export class CrudDialogComponent implements OnInit {
   public save = new EventEmitter();
 
   public getFormControl(name: string): FormControl {
-    return this.form.get(name) as FormControl
+    return this.form.get(name) as FormControl;
   }
 
   constructor(
@@ -38,14 +42,17 @@ export class CrudDialogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.initForm();
+    this.fieldArray.subscribe((fields: FieldArray) => {
+      this.initForm(fields);
+    });
   }
 
-  private initForm(): void {
+  private initForm(fields: FieldArray): void {
     const group = {};
+    this.fields = fields;
+
     this.fields.forEach((element) => {
       if (element.elems && element.elems.getFormControl) {
-        console.log(1);
         group[element.param] = element.elems.getFormControl;
       }
     });

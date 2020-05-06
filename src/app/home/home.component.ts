@@ -8,6 +8,8 @@ import {
   LabelField,
   TextArea,
 } from 'projects/crud-dialog-library/src/public-api';
+import { tap, delay } from 'rxjs/operators';
+import { Observable, forkJoin, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -47,11 +49,26 @@ export class HomeComponent implements OnInit {
       email: 'plima@alter-solutions.com',
     },
   ];
-  public fields = new FieldArray();
+
+  public fieldArray = new FieldArray();
+
+  fields = new Subject<FieldArray>();
+
   constructor(private dialogRef: MatDialogRef<HomeComponent>) {}
 
   ngOnInit() {
-    this.initFields();
+    this.initObservables().subscribe(() => this.initFields());
+  }
+
+  private initObservables(): Observable<any> {
+    const stuff = [{ id: 1, value: 'stuff' }];
+
+    return forkJoin([stuff]).pipe(
+      delay(3000),
+      tap((results) => {
+        console.log('forkjoin');
+      })
+    );
   }
 
   initFields() {
@@ -106,7 +123,7 @@ export class HomeComponent implements OnInit {
     );
 
     // push fields to the form
-    this.fields.push(
+    this.fieldArray.push(
       autoCompleteUser,
       labelForm,
       inputFirstName,
@@ -114,6 +131,7 @@ export class HomeComponent implements OnInit {
       inputEmail,
       textArea
     );
+    this.fields.next(this.fieldArray);
 
     autoCompleteUser.elems.getFormControl.valueChanges.subscribe(
       (selectedValue) => {
