@@ -15,6 +15,8 @@ export * from './lib/entities/text-area';
 /* MODELS */
 export * from './lib/models/field-option.model';
 export * from './lib/field/field-array';
+export * from './lib/models/errors-type.model';
+export * from './lib/models/field-validation.model';
 
 /* SERVICES */
 export * from './lib/services/field-helper.service';
