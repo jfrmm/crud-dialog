@@ -41,7 +41,7 @@ This outputs the package to `dist/crud-dialog-library`
 
 #### Publish the package
 
-Update your package version on `package.json` and `projects/crud-dialog-library/package.json`, create the tag, and then just run
+Update your package version on `package.json`, `package-lock.json` and `projects/crud-dialog-library/package.json`, create the tag, and then just run
 
 ```shell script
 npm run publish-lib
