@@ -63,12 +63,6 @@ export class HomeComponent implements OnInit {
       270,
       {
         validators: [Validators.required],
-        customErrors: [
-          {
-            key:'required',
-            message: 'Field is required'
-          },
-        ]
       },
       true
     );
@@ -96,16 +90,6 @@ export class HomeComponent implements OnInit {
       524,
       {
         validators: [Validators.required, Validators.email],
-        customErrors: [
-          {
-            key:'required',
-            message: 'Field is required'
-          },
-          {
-            key:'email',
-            message: 'Email invalid'
-          }
-        ]
       },
       null,
       true

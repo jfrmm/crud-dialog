@@ -6,11 +6,12 @@ import { FieldEvent } from '../events/field-event';
 import { FieldEnabledEvent } from '../events/field-enabled-event';
 import { FieldDisabledEvent } from '../events/field-disabled-event';
 import { ErrorsType } from 'crud-dialog-library/lib/models/errors-type.model';
+import { FieldValidation } from 'crud-dialog-library/lib/models/field-validation.model';
 
 export class FieldElement {
   private formControl: FormControl;
 
-  private errorsType: ErrorsType[];
+  private errorsType: FieldValidation;
 
   private placeholder: string;
 
@@ -20,7 +21,7 @@ export class FieldElement {
 
   private required: boolean;
 
-  get getErrorsType(): ErrorsType[] {
+  get getErrorsType(): FieldValidation {
     return this.errorsType;
   }
 
@@ -50,7 +51,7 @@ export class FieldElement {
     options: any,
     size?: number,
     required?: boolean,
-    errorsType?: ErrorsType[],
+    errorsType?: FieldValidation,
   ) {
     this.placeholder = placeholder;
     this.formControl = formControl;

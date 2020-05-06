@@ -36,7 +36,7 @@ export class AutoCompleteField extends Field {
       this.fieldOptions(formControl),
       size,
       required,
-      fieldValidation ? fieldValidation.customErrors: []
+      fieldValidation ? fieldValidation : null
     );
   }
 

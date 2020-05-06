@@ -28,7 +28,7 @@ export class InputField extends Field {
       null,
       size,
       required,
-      fieldValidation ? fieldValidation.customErrors : []
+      fieldValidation ? fieldValidation : null
     );
   }
 
