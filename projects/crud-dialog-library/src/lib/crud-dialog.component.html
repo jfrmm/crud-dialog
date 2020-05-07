@@ -51,6 +51,18 @@
               </span>
             </mat-error>
 
+            <mat-error *ngIf="getFormControl(field.param).hasError('min')">
+              <span>
+                Field should have a minimum value of {{ getFormControl(field.param).errors.min.min }}
+              </span>
+            </mat-error>
+
+            <mat-error *ngIf="getFormControl(field.param).hasError('max')">
+              <span>
+                Field should have a maximum value of {{ getFormControl(field.param).errors.max.max }}
+              </span>
+            </mat-error>
+
             <mat-error *ngIf="getFormControl(field.param).hasError('email')">
               <span>Field should be an email</span>
             </mat-error>
@@ -69,6 +81,8 @@
                 && !getFormControl(field.param).hasError('onlyIntegers') 
                 && !getFormControl(field.param).hasError('noSpacesOnly') 
                 && !getFormControl(field.param).hasError('email') 
+                && !getFormControl(field.param).hasError('max') 
+                && !getFormControl(field.param).hasError('min') 
                 && !getFormControl(field.param).hasError('maxLength')
                 && !getFormControl(field.param).hasError('minLength')
                 && !getFormControl(field.param).hasError('required')">{{error.message}}</mat-error>
@@ -162,6 +176,18 @@
               </span>
             </mat-error>
 
+            <mat-error *ngIf="getFormControl(field.param).hasError('min')">
+              <span>
+                Field should have a minimum value of {{ getFormControl(field.param).errors.min.min }}
+              </span>
+            </mat-error>
+
+            <mat-error *ngIf="getFormControl(field.param).hasError('max')">
+              <span>
+                Field should have a maximum value of {{ getFormControl(field.param).errors.max.max }}
+              </span>
+            </mat-error>
+
             <mat-error *ngIf="getFormControl(field.param).hasError('email')">
               <span>Field should be an email</span>
             </mat-error>
@@ -180,6 +206,8 @@
                 && !getFormControl(field.param).hasError('onlyIntegers') 
                 && !getFormControl(field.param).hasError('noSpacesOnly') 
                 && !getFormControl(field.param).hasError('email') 
+                && !getFormControl(field.param).hasError('max')
+                && !getFormControl(field.param).hasError('min')
                 && !getFormControl(field.param).hasError('maxLength')
                 && !getFormControl(field.param).hasError('minLength')
                 && !getFormControl(field.param).hasError('required')">{{error.message}}</mat-error>

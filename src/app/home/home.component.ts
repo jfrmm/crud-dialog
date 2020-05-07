@@ -119,7 +119,11 @@ export class HomeComponent implements OnInit {
       null,
       250,
       {
-        validators: [onlyIntegersValidator()],
+        validators: [
+          Validators.min(1900),
+          Validators.max(2100),
+          onlyIntegersValidator(),
+        ],
       }
     );
     const inputEmail = new InputField(
