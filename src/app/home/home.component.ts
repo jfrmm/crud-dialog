@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Validators } from '@angular/forms';
+import { tap, delay } from 'rxjs/operators';
+import { Observable, forkJoin, Subject } from 'rxjs';
+
 import {
   FieldArray,
   AutoCompleteField,
@@ -8,8 +11,11 @@ import {
   LabelField,
   TextArea,
 } from 'projects/crud-dialog-library/src/public-api';
-import { tap, delay } from 'rxjs/operators';
-import { Observable, forkJoin, Subject } from 'rxjs';
+import {
+  onlyIntegersValidator,
+  objectSelectedValidator,
+  noSpacesOnlyValidator,
+} from '../validators';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +31,7 @@ export class HomeComponent implements OnInit {
       value: 'Pedro',
       first_name: 'Pedro',
       last_name: 'Lima',
+      birth_year: '1990',
       email: 'plima@alter-solutions.com',
     },
     {
@@ -32,6 +39,7 @@ export class HomeComponent implements OnInit {
       value: 'Miguel',
       first_name: 'Miguel',
       last_name: 'Lima',
+      birth_year: '1990',
       email: 'plima@alter-solutions.com',
     },
     {
@@ -39,6 +47,7 @@ export class HomeComponent implements OnInit {
       value: 'Martins',
       first_name: 'Martins',
       last_name: 'Lima',
+      birth_year: '1990',
       email: 'plima@alter-solutions.com',
     },
     {
@@ -46,6 +55,7 @@ export class HomeComponent implements OnInit {
       value: 'Lima',
       first_name: 'Lima',
       last_name: 'Lima',
+      birth_year: '1990',
       email: 'plima@alter-solutions.com',
     },
   ];
@@ -79,7 +89,7 @@ export class HomeComponent implements OnInit {
       null,
       270,
       {
-        validators: [Validators.required],
+        validators: [Validators.required, objectSelectedValidator()],
       },
       true
     );
@@ -103,6 +113,15 @@ export class HomeComponent implements OnInit {
       null,
       true
     );
+    const inputBirthYear = new InputField(
+      'birth_year',
+      'Birth Year',
+      null,
+      250,
+      {
+        validators: [onlyIntegersValidator()],
+      }
+    );
     const inputEmail = new InputField(
       'email',
       'Email',
@@ -119,7 +138,7 @@ export class HomeComponent implements OnInit {
       'Place your comment here...',
       null,
       524,
-      null
+      { validators: [noSpacesOnlyValidator(1)] }
     );
 
     // push fields to the form
@@ -128,6 +147,7 @@ export class HomeComponent implements OnInit {
       labelForm,
       inputFirstName,
       inputLastName,
+      inputBirthYear,
       inputEmail,
       textArea
     );

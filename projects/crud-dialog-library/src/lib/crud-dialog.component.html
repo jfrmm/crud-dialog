@@ -1,7 +1,8 @@
 <ng-container *ngIf="fields; else loading">
   <div mat-dialog-title>
-    <h1 mat-dialog-title>{{title}}</h1>
+    <h1 mat-dialog-title>{{ title }}</h1>
   </div>
+
   <div
     mat-dialog-content
     *ngIf="form"
@@ -19,6 +20,7 @@
           *ngFor="let field of fields"
           [ngSwitch]="field.getType"
         >
+
           <!-- INPUT -->
           <mat-form-field
             *ngSwitchCase="'input'"
@@ -32,28 +34,49 @@
               autocomplete="off"
               [required]="field.elems.getRequired ? field.elems.getRequired : false"
             >
+
             <mat-error *ngIf="getFormControl(field.param).hasError('required')">
-              {{ (field.param).toUpperCase() + ' is required'}}
+              <span>Field is required</span>
             </mat-error>
+
             <mat-error *ngIf="getFormControl(field.param).hasError('minLength')">
-              {{ (field.param).toUpperCase() + ' is too short'}}
+              <span>
+                Field should have, at least, {{ getFormControl(field.param).errors.minlength.requiredLength }} characters
+              </span>
             </mat-error>
+
             <mat-error *ngIf="getFormControl(field.param).hasError('maxLength')">
-              {{ (field.param).toUpperCase() + ' is too big'}}
+              <span>
+                Field should have, at maximum, {{ getFormControl(field.param).errors.maxlength.requiredLength }} characters
+              </span>
             </mat-error>
+
             <mat-error *ngIf="getFormControl(field.param).hasError('email')">
-              {{ (field.param).toUpperCase() + ' is not an email'}}
+              <span>Field should be an email</span>
             </mat-error>
+
+            <mat-error *ngIf="getFormControl(field.param).hasError('noSpacesOnly')">
+              <span>Field can not be spaces only</span>
+            </mat-error>
+
+            <mat-error *ngIf="getFormControl(field.param).hasError('onlyIntegers')">
+              <span>Field must be a number</span>
+            </mat-error>
+
             <mat-error *ngIf="field.elems.getErrorsType">
               <ng-container *ngFor="let error of field.elems.getErrorsType.customErrors">
                 <mat-error *ngIf="getFormControl(field.param).hasError(error.key) 
+                && !getFormControl(field.param).hasError('onlyIntegers') 
+                && !getFormControl(field.param).hasError('noSpacesOnly') 
                 && !getFormControl(field.param).hasError('email') 
                 && !getFormControl(field.param).hasError('maxLength')
                 && !getFormControl(field.param).hasError('minLength')
                 && !getFormControl(field.param).hasError('required')">{{error.message}}</mat-error>
               </ng-container>
             </mat-error>
+
           </mat-form-field>
+
           <!-- LABEL -->
           <div
             *ngSwitchCase="'label'"
@@ -61,6 +84,7 @@
           >
             <span [innerHtml]="field.elems.getPlaceholder"></span>
           </div>
+
           <!-- AUTOCOMPLETE -->
           <mat-form-field
             *ngSwitchCase="'autocomplete'"
@@ -87,55 +111,74 @@
                 {{ fieldOption.value }}
               </mat-option>
             </mat-autocomplete>
+
             <mat-error *ngIf="getFormControl(field.param).hasError('required')">
-              {{ (field.param).toUpperCase() + ' is required'}}
+              <span>Field is required</span>
             </mat-error>
-            <mat-error *ngIf="getFormControl(field.param).hasError('minLength')">
-              {{ (field.param).toUpperCase() + ' is too short'}}
+
+            <mat-error *ngIf="getFormControl(field.param).hasError('onlyObject')">
+              <span>Please select a value from the list</span>
             </mat-error>
-            <mat-error *ngIf="getFormControl(field.param).hasError('maxLength')">
-              {{ (field.param).toUpperCase() + ' is too big'}}
-            </mat-error>
-            <mat-error *ngIf="getFormControl(field.param).hasError('email')">
-              {{ (field.param).toUpperCase() + ' is not an email'}}
-            </mat-error>
+
             <mat-error *ngIf="field.elems.getErrorsType">
               <ng-container *ngFor="let error of field.elems.getErrorsType.customErrors">
                 <mat-error *ngIf="getFormControl(field.param).hasError(error.key) 
-                && !getFormControl(field.param).hasError('email') 
-                && !getFormControl(field.param).hasError('maxLength')
-                && !getFormControl(field.param).hasError('minLength')
+                && !getFormControl(field.param).hasError('onlyObject')
                 && !getFormControl(field.param).hasError('required')">{{error.message}}</mat-error>
               </ng-container>
             </mat-error>
+
           </mat-form-field>
-          <!-- TextArea -->
+
+          <!-- TEXTAREA -->
           <mat-form-field
             *ngSwitchCase="'textArea'"
             [ngStyle]="{'width': field.elems?.getSize ? field.elems.getSize +'px' : '200px'}"
           >
-            <mat-label>Leave a comment</mat-label>
+            <mat-label>{{ field.elems.getPlaceholder }}</mat-label>
             <textarea
               matInput
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="3"
               [formControl]="field.elems.getFormControl"
-              [placeholder]="field.elems.getPlaceholder"
               [required]="field.elems.getRequired ? field.elems.getRequired : false"
             ></textarea>
+
             <mat-error *ngIf="getFormControl(field.param).hasError('required')">
-              {{ (field.param).toUpperCase() + ' is required'}}
+              <span>Field is required</span>
             </mat-error>
+
             <mat-error *ngIf="getFormControl(field.param).hasError('minLength')">
-              {{ (field.param).toUpperCase() + ' is too short'}}
+              <span>
+                Field should have, at least, {{ getFormControl(field.param).errors.minlength.requiredLength }} characters
+              </span>
             </mat-error>
+
             <mat-error *ngIf="getFormControl(field.param).hasError('maxLength')">
-              {{ (field.param).toUpperCase() + ' is too big'}}
+              <span>
+                Field should have, at maximum, {{ getFormControl(field.param).errors.maxlength.requiredLength }} characters
+              </span>
             </mat-error>
+
             <mat-error *ngIf="getFormControl(field.param).hasError('email')">
-              {{ (field.param).toUpperCase() + ' is not an email'}}
+              <span>Field should be an email</span>
             </mat-error>
+
+            <mat-error *ngIf="getFormControl(field.param).hasError('noSpacesOnly')">
+              <span>Field can not be spaces only</span>
+            </mat-error>
+
+            <mat-error *ngIf="getFormControl(field.param).hasError('onlyIntegers')">
+              <span>Field must be a number</span>
+            </mat-error>
+
             <mat-error *ngIf="field.elems.getErrorsType">
               <ng-container *ngFor="let error of field.elems.getErrorsType.customErrors">
                 <mat-error *ngIf="getFormControl(field.param).hasError(error.key) 
+                && !getFormControl(field.param).hasError('onlyIntegers') 
+                && !getFormControl(field.param).hasError('noSpacesOnly') 
                 && !getFormControl(field.param).hasError('email') 
                 && !getFormControl(field.param).hasError('maxLength')
                 && !getFormControl(field.param).hasError('minLength')
