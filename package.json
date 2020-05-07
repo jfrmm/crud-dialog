@@ -8,6 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "build-watch": "ng build crud-dialog-library --watch",
     "build-lib": "ng build crud-dialog-library --prod",
     "publish-lib": "cd dist/crud-dialog-library && npm publish --access public"
   },
