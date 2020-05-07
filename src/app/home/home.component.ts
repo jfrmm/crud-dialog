@@ -74,9 +74,9 @@ export class HomeComponent implements OnInit {
     const stuff = [{ id: 1, value: 'stuff' }];
 
     return forkJoin([stuff]).pipe(
-      delay(3000),
+      delay(250),
       tap((results) => {
-        console.log('forkjoin');
+        console.log('250ms delay...');
       })
     );
   }
@@ -147,8 +147,8 @@ export class HomeComponent implements OnInit {
 
     // push fields to the form
     this.fieldArray.push(
-      autoCompleteUser,
       labelForm,
+      autoCompleteUser,
       inputFirstName,
       inputLastName,
       inputBirthYear,

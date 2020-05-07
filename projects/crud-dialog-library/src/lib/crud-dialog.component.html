@@ -218,11 +218,15 @@
       </div>
     </form>
   </div>
+
   <div
     mat-dialog-actions
+    fxLayout="row"
+    fxLayoutGap="24px"
     fxLayoutAlign="end center"
   >
     <button
+      fxFlex="nogrow"
       mat-raised-button
       color="primary"
       (click)="onClickSave()"
@@ -230,8 +234,9 @@
     >
       {{ submitButton ? submitButton : 'Submit' }}
     </button>
-    <div fxFlex="1"></div>
+
     <button
+      fxFlex="nogrow"
       mat-raised-button
       color="warn"
       (click)="onClickCancel()"
@@ -241,6 +246,7 @@
     </button>
   </div>
 </ng-container>
+
 <ng-template #loading>
   <div fxFlexLayout="row">
     <div
