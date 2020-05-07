@@ -1,6 +1,6 @@
 {
   "name": "@asp-devteam/crud-dialog",
-  "version": "9.2.3",
+  "version": "9.2.4",
   "peerDependencies": {
     "@angular/common": "~9.1.2",
     "@angular/cdk": "~9.2.0",
